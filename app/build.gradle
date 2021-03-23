@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.cyl.wifi"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -26,13 +26,33 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+//https://www.pangle.cn/union/media/union/download/detail?id=3&osType=android  穿山甲接入平台
 dependencies {
-
+    implementation(name: 'open_ad_sdk', ext: 'aar')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.github.lzbcyl:LzbUtil:v0.0.9'
+
+    //https://github.com/facebookarchive/network-connection-class
+    implementation 'com.facebook.network.connectionclass:connectionclass:1.0.1'
+    //https://developers.adnet.qq.com/doc/android/union/union_embed#%E5%B5%8C%E5%85%A5%E5%B9%BF%E5%91%8Asdk 腾讯广告
+    implementation 'com.qq.e.union:tbs:+' // X5 内核版本
+
+
+
+
 }

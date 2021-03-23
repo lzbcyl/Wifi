@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/network_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="12dp"
+                android:src="@mipmap/rectangle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/network_back"
+                android:text="网络测速"
+                android:textColor="#ff1f304f"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="104dp"
+                android:layout_height="72dp"
+                android:background="@drawable/shape_network_yanchi"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="44dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="--ms"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="20dp"
+                    android:text="网络延迟"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="104dp"
+                android:layout_height="72dp"
+                android:background="@drawable/shape_network_xiazai"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="44dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="--ms"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="20dp"
+                    android:text="下载速度"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="104dp"
+                android:layout_height="72dp"
+                android:background="@drawable/shape_network_shangchuan"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="44dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="--ms"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="20dp"
+                    android:text="上传速度"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="42dp"
+            android:background="@mipmap/clock">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@mipmap/pointer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="18.5m/s"
+                android:textColor="#ffffffff"
+                android:textSize="26sp" />
+
+            <TextView
+                android:layout_width="122dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="254dp"
+                android:text="正在测试下载速度..."
+                android:textColor="#ff384f7b"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_stop_network"
+            android:layout_marginTop="53dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="57dp"
+            android:background="@drawable/shape_network_tingzhi"
+            android:text="停止测速"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+
+</layout>
