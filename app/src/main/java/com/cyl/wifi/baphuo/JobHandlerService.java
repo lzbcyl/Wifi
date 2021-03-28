@@ -10,8 +10,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -20,21 +24,23 @@ import java.util.List;
  */
 
 @SuppressLint("NewApi")
-public class JobHandlerService extends JobService {
+public class JobHandlerService extends JobService implements Runnable{
     private JobScheduler mJobScheduler;
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
       Log.e("TAG","服务被创建");
+
 //        startService(new Intent(this, LocalService.class));
 //        startService(new Intent(this, RemoteService.class));
-
+//        new Thread(this).start();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mJobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
             JobInfo.Builder builder = new JobInfo.Builder(startId++,
                     new ComponentName(getPackageName(), JobHandlerService.class.getName()));
 
-            builder.setPeriodic(5000); //每隔5秒运行一次
+//            builder.setPeriodic(3000); //每隔5秒运行一次
+            builder.setOverrideDeadline(3000);
+            builder.setMinimumLatency(3000);
             builder.setRequiresCharging(true);
             builder.setPersisted(true);  //设置设备重启后，是否重新执行任务
             builder.setRequiresDeviceIdle(true);
@@ -42,8 +48,9 @@ public class JobHandlerService extends JobService {
             if (mJobScheduler.schedule(builder.build()) <= 0) {
                 //If something goes wrong
                 System.out.println("工作失败");
+                Log.e("TAG","工作失败");
             } else {
-                System.out.println("工作成功");
+                Log.e("TAG","工作成功");
             }
         }
         return START_STICKY;
@@ -52,6 +59,7 @@ public class JobHandlerService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        Log.e("TAG","onStartJob");
         Log.e("TAG","onStartJob" + isServiceRunning(this,"com.cyl.wifi.baphuo.MyAbsWorkService"));
 //        || isServiceRunning(this, "com.ph.myservice.RemoteService") == false
 //        if (!isServiceRunning(getApplicationContext(), "com.ph.myservice") || !isServiceRunning(getApplicationContext(), "com.ph.myservice:remote")) {
@@ -64,6 +72,7 @@ public class JobHandlerService extends JobService {
 
         boolean serviceRunning2 = isServiceRunning(getApplicationContext(), "com.ph.myservice:remote");
         System.out.println("进程二" + serviceRunning2);*/
+
         return false;
     }
 
@@ -100,5 +109,13 @@ public class JobHandlerService extends JobService {
         Log.e("TAG","onDestroy");
         super.onDestroy();
         Toast.makeText(this,"1",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void run() {
+        Log.e("TAG","-run----");
+        Intent intent = new Intent();
+        intent.setClass(this, JobHandlerService.class);
+        startService(intent);
     }
 }

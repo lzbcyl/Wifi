@@ -3,27 +3,23 @@ package com.cyl.wifi.application;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
-import com.cyl.wifi.MainActivity;
-import com.cyl.wifi.R;
 import com.cyl.wifi.ad.config.TTAdManagerHolder;
 import com.cyl.wifi.baphuo.JobHandlerService;
 import com.cyl.wifi.baphuo.MyAbsWorkService;
-import com.fanjun.keeplive.KeepLive;
-import com.fanjun.keeplive.config.ForegroundNotification;
-import com.fanjun.keeplive.config.ForegroundNotificationClickListener;
-import com.fanjun.keeplive.config.KeepLiveService;
-import com.lzb.lzbutils.utils.LogUtils;
 import com.qq.e.comm.managers.GDTADManager;
 import com.xdandroid.hellodaemon.DaemonEnv;
 
 public class MyApplication extends Application {
     public  static Context context;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,7 +42,7 @@ public class MyApplication extends Application {
                         .build());
 
         DaemonEnv.initialize(this, MyAbsWorkService.class, 2);
-        startService(new Intent(this, MyAbsWorkService.class));
+        startForegroundService(new Intent(this, MyAbsWorkService.class));
 
         //如果明确某个进程不会使用到广告SDK，可以只针对特定进程初始化广告SDK的content
         //if (PROCESS_NAME_XXXX.equals(processName)) {
@@ -57,42 +53,42 @@ public class MyApplication extends Application {
         startService(intent);
 
 
-        //定义前台服务的默认样式。即标题、描述和图标
-        ForegroundNotification foregroundNotification = new ForegroundNotification("测试","描述", R.mipmap.ic_launcher,
-                //定义前台服务的通知点击事件
-                new ForegroundNotificationClickListener() {
-
-                    @Override
-                    public void foregroundNotificationClick(Context context, Intent intent) {
-                        LogUtils.loge("TAG","-+-foregroundNotificationClick-----");
-                    }
-                });
-        //启动保活服务
-        KeepLive.startWork(this, KeepLive.RunMode.ROGUE, foregroundNotification,
-                //你需要保活的服务，如socket连接、定时任务等，建议不用匿名内部类的方式在这里写
-                new KeepLiveService() {
-                    /**
-                     * 运行中
-                     * 由于服务可能会多次自动启动，该方法可能重复调用
-                     */
-                    @Override
-                    public void onWorking() {
-                        Intent intent = new Intent();
-                        intent.setClass(context, JobHandlerService.class);
-                        startService(intent);
-                        LogUtils.loge("TAG","-+-onWorking-----");
-                    }
-                    /**
-                     * 服务终止
-                     * 由于服务可能会被多次终止，该方法可能重复调用，需同onWorking配套使用，如注册和注销broadcast
-                     */
-                    @Override
-                    public void onStop() {
-                        Toast.makeText(context,"asdf",Toast.LENGTH_LONG).show();
-                        LogUtils.loge("TAG","-+-onStop-----");
-                    }
-                }
-        );
+//        //定义前台服务的默认样式。即标题、描述和图标
+//        ForegroundNotification foregroundNotification = new ForegroundNotification("测试","描述", R.mipmap.ic_launcher,
+//                //定义前台服务的通知点击事件
+//                new ForegroundNotificationClickListener() {
+//
+//                    @Override
+//                    public void foregroundNotificationClick(Context context, Intent intent) {
+//                        LogUtils.loge("TAG","-+-foregroundNotificationClick-----");
+//                    }
+//                });
+//        //启动保活服务
+//        KeepLive.startWork(this, KeepLive.RunMode.ROGUE, foregroundNotification,
+//                //你需要保活的服务，如socket连接、定时任务等，建议不用匿名内部类的方式在这里写
+//                new KeepLiveService() {
+//                    /**
+//                     * 运行中
+//                     * 由于服务可能会多次自动启动，该方法可能重复调用
+//                     */
+//                    @Override
+//                    public void onWorking() {
+////                        Intent intent = new Intent();
+////                        intent.setClass(context, JobHandlerService.class);
+////                        startService(intent);
+//                        LogUtils.loge("TAG","-+-onWorking-----");
+//                    }
+//                    /**
+//                     * 服务终止
+//                     * 由于服务可能会被多次终止，该方法可能重复调用，需同onWorking配套使用，如注册和注销broadcast
+//                     */
+//                    @Override
+//                    public void onStop() {
+//                        Toast.makeText(context,"asdf",Toast.LENGTH_LONG).show();
+//                        LogUtils.loge("TAG","-+-onStop-----");
+//                    }
+//                }
+//        );
     }
 
     @Override
@@ -114,6 +110,9 @@ public class MyApplication extends Application {
         // 程序在内存清理的时候执行（回收内存）
         // HOME键退出应用程序、长按MENU键，打开Recent TASK都会执行
         Log.e("TAG", "onTrimMemory");
+        Intent intent = new Intent();
+        intent.setClass(this, JobHandlerService.class);
+        startService(intent);
         super.onTrimMemory(level);
     }
 }

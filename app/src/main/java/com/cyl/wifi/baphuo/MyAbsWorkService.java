@@ -60,7 +60,10 @@ public class MyAbsWorkService extends AbsWorkService {
 
     @Override
     public void onServiceKilled(Intent rootIntent) {
-        LogUtils.loge("TAG","--------onServiceKilled---");
+        LogUtils.loge("TAG","--------onServiceKilled--1-");
+        Intent intent = new Intent();
+        intent.setClass(this, JobHandlerService.class);
+        startService(intent);
     }
 
     @Override

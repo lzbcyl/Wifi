@@ -1,4 +1,4 @@
-package com.cyl.wifi;
+package com.cyl.wifi.activity;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cyl.wifi.R;
 import com.cyl.wifi.utils.NetWorkUtils;
 import com.facebook.network.connectionclass.ConnectionClassManager;
 import com.facebook.network.connectionclass.ConnectionQuality;

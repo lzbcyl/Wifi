@@ -1,4 +1,4 @@
-package com.cyl.wifi;
+package com.cyl.wifi.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,10 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bytedance.sdk.openadsdk.TTAdManager;
+import com.cyl.wifi.R;
 import com.cyl.wifi.ad.tt.SplashActivity;
-import com.cyl.wifi.baphuo.JobHandlerService;
-import com.cyl.wifi.utils.NetWorkUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
+        findViewById(R.id.main2).setOnClickListener(v->{
+            Intent intent=new Intent(this, MainActivity2.class);
+            this.startActivity(intent);
+        });
 
     }
 }
