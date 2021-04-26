@@ -2,9 +2,12 @@ package com.cyl.wifi.baphuo;
 
 import android.content.Intent;
 import android.os.IBinder;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.cyl.wifi.baphuo.receiver.BroadCostReceiverService;
+import com.cyl.wifi.baphuo.receiver.MyBroadcoastReceiver;
 import com.lzb.lzbutils.utils.LogUtils;
 import com.xdandroid.hellodaemon.AbsWorkService;
 
@@ -61,14 +64,15 @@ public class MyAbsWorkService extends AbsWorkService {
     @Override
     public void onServiceKilled(Intent rootIntent) {
         LogUtils.loge("TAG","--------onServiceKilled--1-");
-        Intent intent = new Intent();
-        intent.setClass(this, JobHandlerService.class);
-        startService(intent);
+        Toast.makeText(this,"1",Toast.LENGTH_LONG).show();
+        Intent intent1 = new Intent(this, MyBroadcoastReceiver.class);
+        sendBroadcast(intent1);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Toast.makeText(this,"onDestroy",Toast.LENGTH_LONG).show();
         LogUtils.loge("TAG","--------onDestroy---");
     }
 }

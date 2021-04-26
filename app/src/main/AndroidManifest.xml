@@ -42,14 +42,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wifi">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ActivityNetwork" />
+        <activity android:name=".view.ActivityNetwork" />
         <!--  头条广告SDK -->
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
@@ -109,16 +109,40 @@
         <service
             android:name=".baphuo.MyAbsWorkService"
             android:exported="true"
-            android:persistent="true" />
+            android:persistent="true"
+           />
         <service
             android:name=".baphuo.JobHandlerService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:persistent="true" />
+            android:persistent="true"
+           />
 
-        <activity android:name=".activity.MainActivity2" />
-
+        <activity android:name=".view.MainActivity2" />
+        <service
+            android:name=".baphuo.ndk.NdkService"
+            android:exported="true"
+            android:persistent="true"
+            />
         <receiver android:name=".baphuo.MyBroadcastReceiver" />
+
+        <receiver
+            android:name=".baphuo.receiver.MyBroadcoastReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".baphuo.receiver.BroadCostReceiverService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name=".baphuo.leoric.Receiver1" android:process=":resident" />
+        <service android:name=".baphuo.leoric.Service1" android:process=":resident" />
+        <activity android:name=".baphuo.leoric.Activity1" android:process=":resident" />
+
+        <receiver android:name=".baphuo.leoric.Receiver2" android:process="android.media" />
+        <activity android:name=".baphuo.leoric.Activity2" android:process="android.media" />
+        <service android:name=".baphuo.leoric.Service2" android:process="android.media" />
     </application>
 
 </manifest>

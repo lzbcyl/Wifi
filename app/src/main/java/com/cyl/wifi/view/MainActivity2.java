@@ -1,10 +1,4 @@
-package com.cyl.wifi.activity;
-
-import android.graphics.Color;
-import android.os.Build;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+package com.cyl.wifi.view;
 
 import com.cyl.wifi.R;
 import com.cyl.wifi.databinding.ActivityMain2BindingImpl;

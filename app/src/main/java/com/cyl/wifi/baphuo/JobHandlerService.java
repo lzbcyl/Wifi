@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @SuppressLint("NewApi")
-public class JobHandlerService extends JobService implements Runnable{
+public class    JobHandlerService extends JobService implements Runnable{
     private JobScheduler mJobScheduler;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

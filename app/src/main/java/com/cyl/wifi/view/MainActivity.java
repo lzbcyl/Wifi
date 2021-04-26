@@ -1,4 +1,4 @@
-package com.cyl.wifi.activity;
+package com.cyl.wifi.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cyl.wifi.R;
 import com.cyl.wifi.ad.tt.SplashActivity;
+import com.cyl.wifi.baphuo.leoric.Service1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,11 +30,15 @@ public class MainActivity extends AppCompatActivity {
             this.startActivity(intent);
 
         });
+        CallUtils.callSimpleInfo();
 
         findViewById(R.id.main2).setOnClickListener(v->{
             Intent intent=new Intent(this, MainActivity2.class);
             this.startActivity(intent);
         });
+
+        startService(new Intent(MainActivity.this, Service1.class));
+
 
     }
 }

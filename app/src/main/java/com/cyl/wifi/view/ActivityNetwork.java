@@ -1,4 +1,4 @@
-package com.cyl.wifi.activity;
+package com.cyl.wifi.view;
 
 import android.graphics.Color;
 import android.os.Build;

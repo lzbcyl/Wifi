@@ -16,7 +16,7 @@ import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.bytedance.sdk.openadsdk.TTSplashAd;
-import com.cyl.wifi.activity.MainActivity;
+import com.cyl.wifi.view.MainActivity;
 import com.cyl.wifi.R;
 import com.cyl.wifi.ad.config.TTAdManagerHolder;
 import com.cyl.wifi.utils.TToast;
